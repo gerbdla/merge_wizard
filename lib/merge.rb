@@ -1,12 +1,10 @@
 require 'active_record'
 
 module Merge
+   
    # True if self is safe to merge with +object+, ie they are more or less equal.
    # Default implementation compares all attributes except id and metadata.
    # Can be overridden in specific models that have a neater way of comparison.
-   
-   
-   
    def merge_equal?(object)
      object.instance_of?(self.class) and merge_attributes == object.merge_attributes
    end
@@ -54,7 +52,7 @@ module Merge
            else
              other = object.send(r.name) - local
              # May be better to compare without the primary key attribute instead of setting it.
-             other.each {|o| o.write_attribute(r.primary_key_name, self.id)}
+             other.each {|o| o[r.primary_key_name] = self.id}
              other.reject! {|o| local.any? {|l| merge_if_equal(l,o) }}
              local << other
            end
