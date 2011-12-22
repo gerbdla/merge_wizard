@@ -16,7 +16,8 @@ it "should merge" do
    athlete3.first_name.should == "John"
    athlete1.merge!(athlete2)  
    athlete2.destroyed? == true
-   athlete1.birthdate.should == "10/12/1969"
+   athlete1.birthdate.should == "10/12/1969" 
+   athlete1.nickname.should == "gerbdla"
    
 end 
 
