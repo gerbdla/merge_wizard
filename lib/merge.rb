@@ -68,7 +68,7 @@ module Merge
        object = objects.shift
        blank_attributes.reject! do |att|
          if val = object.read_attribute(att) and not val.blank?
-           write_attribute(att, val)
+             self[att] = val
          end
        end
      end
