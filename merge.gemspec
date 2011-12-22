@@ -7,18 +7,20 @@ Gem::Specification.new do |s|
   s.version     = Merge::VERSION
   s.authors     = ["David Gerber"]
   s.email       = ["dgerber@socal.rr.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
+  s.homepage    = "http://www.gerberdata.net"
+  s.summary     = "gem to merge data"
   s.description = %q{TODO: Write a gem description}
 
-  s.rubyforge_project = "merge"
+  s.required_rubygems_version = ">= 1.0.0"
+  s.rubyforge_project         = "merge"
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ["lib"]
+  s.add_development_dependency "bundler", ">= 1.0.0"
+  s.add_development_dependency "rspec", "~> 2.3"
+  s.add_development_dependency "sqlite3-ruby"
+  
+  s.add_dependency "activerecord", "~> 3.0"
 
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
+  s.files        = `git ls-files`.split("\n")
+  s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
+  s.require_path = 'lib'
 end
